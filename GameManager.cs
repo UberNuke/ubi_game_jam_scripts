@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour {
 
     public GameObject cioaraPrefab;
     public Transform spawnCioara;
+    public GameObject[] powerUps;
+
 
     public int score;
 	public int max_no_of_ciori = 10;
@@ -21,7 +23,9 @@ public class GameManager : MonoBehaviour {
 	}
 
     void SpawnPowerUp() {
-
+        int index = Random.Range(0, powerUps.Length);
+        float posY = Random.insideUnitCircle.y * cameraSize;
+        Instantiate(powerUps[index], new Vector3(spawnCioara.position.x, posY, 0), Quaternion.identity);
     }
 	
 	void SpawnCiori() {

@@ -11,7 +11,7 @@ public class PowerUp_Fuel : PowerUp {
         base.BaseUpdate();
     }
 
-	public void Activate() {
+	public override void Activate()  {
 
     }
 }
