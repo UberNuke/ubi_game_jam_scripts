@@ -14,10 +14,10 @@ public class Cioara : MonoBehaviour {
 	    transform.Translate(velocityX, 0, 0);
 	}
 
-    void OnTriggerEnter(Collider other) {
-        Destroy(gameObject);
-        if (other.tag != "Player")
-            Destroy(other.gameObject);
-        Debug.Log("coliziune");
-    }
+    //void OnTriggerEnter(Collider other) {
+    //    Destroy(gameObject);
+    //    if (other.tag != "Player")
+    //        Destroy(other.gameObject);
+    //    Debug.Log("coliziune");
+    //}
 }
