@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
     public GameObject cioaraPrefab;
     public Transform spawnCioara;
 
+    public int score;
+
     private float cameraSize;
 
 
