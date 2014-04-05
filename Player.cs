@@ -14,6 +14,12 @@ public class Player : MonoBehaviour {
     private float counter;
     private bool game_over;
 
+    public GUIText altitudeText;
+    public GUIText scoreText;
+    public GUIText fuelText;
+    public GameManager GM;
+
+
 	void Start () {
 	    moveBoundSize = Camera.main.orthographicSize;
 
@@ -64,6 +70,12 @@ public class Player : MonoBehaviour {
             difficulty++;
             Debug.Log("am crescut dificultatea la " + difficulty.ToString());
         }
+
+        // update gui text
+        altitudeText.text = "" + transform.position.y;
+        scoreText.text = "" + GM.score;
+        fuelText.text = "" + fuel;
+
 	}
 
     float calculate_gravity(float init_y)
