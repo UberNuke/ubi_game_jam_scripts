@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
     public int difficulty;
     public float fuel;
     public float maxfuel;
-
+    public float fuel_consumption;
     private float moveBoundSize;
     private float counter;
     private bool game_over;
@@ -24,15 +24,27 @@ public class Player : MonoBehaviour {
         fuel = 50;
         maxfuel = 100;
         game_over = false;
+        fuel_consumption = (float)0.1;
     }
 	
 	void Update () {
 	    //float moveX = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
         float moveY = speed * Input.GetAxis("Vertical") * Time.deltaTime;
 
+        
+
+        if (fuel <= 0 && moveY > 0)
+            moveY = 0;
+
+        if (moveY > 0)
+            fuel -= fuel_consumption;
+
         moveY = calculate_gravity(moveY);
 
         transform.Translate(0, moveY, 0);
+
+        if (fuel < 0)
+            Debug.Log("Out of fuel");
 
         Vector3 pos = transform.position;
         float toClamp = moveBoundSize - moveBound;
@@ -43,8 +55,7 @@ public class Player : MonoBehaviour {
         transform.position = pos;
 
 
-        if (game_over) 
-            GameObject.Find("Game Manager").GetComponent<GameOver>().StopGame();
+        if (game_over) Debug.Log("GAME OVEEEEER!!!!!");
 
         counter++;
         if (counter==10000)
