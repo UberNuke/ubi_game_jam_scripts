@@ -13,11 +13,14 @@ public class Player : MonoBehaviour {
     private float moveBoundSize;
     private float counter;
     private bool game_over;
+	public float health = 100f;
+	private float colision_health_decrease = -10;
 
     public GUIText altitudeText;
     public GUIText scoreText;
     public GUIText fuelText;
     public GameManager GM;
+	
 
 
 	void Start () {
@@ -31,6 +34,8 @@ public class Player : MonoBehaviour {
         maxfuel = 100;
         game_over = false;
         fuel_consumption = (float)0.1;
+		health = 100f;
+        colision_health_decrease = -10;
     }
 	
 	void Update () {
@@ -82,5 +87,16 @@ public class Player : MonoBehaviour {
     {
         var calculate = init_y + gravity;
         return calculate;
+    }
+	
+	void OnTriggerEnter(Collider other)
+    {
+        //Destroy(gameObject);
+        if (other.tag == "Cioara")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("coliziune cu cioara");
+            health = health + colision_health_decrease;
+        }
     }
 }
